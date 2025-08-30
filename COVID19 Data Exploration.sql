@@ -1,23 +1,23 @@
 --Looking at all parameters from the world covid deaths
 SELECT *
 FROM [COVID ANALYSIS].dbo.['World Covid Deaths]
-ORDER BY 3,4
+ORDER BY 3,4;
 
 --Looking at all parameters from the world covid vaccination
 SELECT *
 FROM [COVID ANALYSIS].dbo.['World Covid Vaccination]
-ORDER BY 3,4
+ORDER BY 3,4;
 
 --Looking at selected parameters from the world covid deaths
 SELECT location, date, total_cases, new_cases, total_deaths, population
 FROM [COVID ANALYSIS].dbo.['World Covid Deaths]
-ORDER BY 1,2
+ORDER BY 1,2;
 
 --looking at the death percentage of Nigeria, this equally shows the likelyhood of a human to die from contracting the virus in Nigeria
 SELECT location, date, population, cast(total_cases as float) TC_cast, cast(total_deaths as float) TD_cast, (cast(total_deaths as float))/(cast(total_cases as float))*100 DeathPercentage
 FROM [COVID ANALYSIS].dbo.['World Covid Deaths]
 WHERE location like '%Nigeria%'
-ORDER BY 1,2
+ORDER BY 1,2;
 
 --looking at the infection percentage in the Nigerian Population,  ie, the percentage of Nigerians who got infected by the virus.
 SELECT location, date, population, cast(total_cases as float) TC_cast, (cast(total_cases as float)/(population))*100 InfectedPercentage
@@ -141,4 +141,5 @@ from [COVID ANALYSIS].dbo.['World Covid Deaths] Deaths
 	and Deaths.date = Vacs.date
 	where vacs.continent is not null
 	group by Vacs.location, deaths.population
+
 order by 4 desc
